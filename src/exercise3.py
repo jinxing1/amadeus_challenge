@@ -22,7 +22,7 @@ def get_monthly_number_of_serches(path, delim, airports):
         delim(String): deliminator
         airports(Array of String): airports' name
     Returns:
-        df_searches(int): number indicates the number of lines for a csv file
+        df_searches(DataFrame): contains the monthly number of searches for flights arriving at given airports
     """
     chunksize = 10 ** 6
 
