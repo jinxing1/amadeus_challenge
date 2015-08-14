@@ -3,7 +3,7 @@
 
 # # Plot the monthly number of searches for flights arriving at Málaga, Madrid or Barcelona
 
-# In[81]:
+# In[19]:
 
 import pandas as pd
 
@@ -34,8 +34,7 @@ def get_monthly_number_of_serches(path, delim, airports):
 
     df_searches = pd.DataFrame()
     for airport in airports:
-        df_one_airport = pd.DataFrame()
-        df_one_airport = df.loc[df['Destination'] == airport]
+        df_one_airport = pd.DataFrame(df.loc[df['Destination'] == airport])
         df_one_airport['month'] = df_one_airport.apply(lambda row: (pd.to_datetime(row['Date'])).month, axis=1)
         search_count = df_one_airport.groupby('month').aggregate('count')
         df_searches[airport] = search_count['Destination']
@@ -44,14 +43,14 @@ def get_monthly_number_of_serches(path, delim, airports):
 
 # ## call function get_montly_number_of_searches and store result in df_searches
 
-# In[82]:
+# In[20]:
 
 df_searches = get_monthly_number_of_serches("../data/searches.csv", "^", ['MAD', 'AGP', 'BCN'])
 
 
 # ## plot results
 
-# In[83]:
+# In[21]:
 
-df_searches.plot()
+df_searches.plot(title = "Number of searches for arrival flights")
 
